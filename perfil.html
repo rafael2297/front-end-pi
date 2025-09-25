@@ -1,91 +1,52 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Perfil</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="javaScript.js" defer></script>
-    <script src="navbar.js" defer></script>
-  </head>
-  <body>
+    <script defer="" src="./js/main.js"></script>
+    <script defer="" src="./js/navbar.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/perfil.css" rel="stylesheet" />
+</head>
+
+<body>
     <div id="navbar-container"></div>
-    <script>
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar-container").innerHTML = data;
-          // Inicializar popover de configuração
-          const btnConfig = document.getElementById("configuracao-btn");
-          const popoverConfig = document.getElementById("popover-configuracao");
-          const fecharPopover = document.getElementById(
-            "fechar-popover-config"
-          );
-          if (btnConfig && popoverConfig && fecharPopover) {
-            btnConfig.addEventListener("click", function (e) {
-              e.preventDefault();
-              const rect = btnConfig.getBoundingClientRect();
-              popoverConfig.style.display = "block";
-              let top = rect.bottom + window.scrollY + 8;
-              let left = rect.left + window.scrollX;
-              const popoverWidth = popoverConfig.offsetWidth || 240;
-              const popoverHeight = popoverConfig.offsetHeight || 120;
-              const viewportWidth = window.innerWidth;
-              const viewportHeight = window.innerHeight;
-              if (left + popoverWidth > viewportWidth) {
-                left = viewportWidth - popoverWidth - 16;
-              }
-              if (top + popoverHeight > viewportHeight) {
-                top = rect.top + window.scrollY - popoverHeight - 8;
-              }
-              popoverConfig.style.top = top + "px";
-              popoverConfig.style.left = left + "px";
-            });
-            fecharPopover.addEventListener("click", function () {
-              popoverConfig.style.display = "none";
-            });
-            document.addEventListener("mousedown", function (e) {
-              if (
-                popoverConfig.style.display === "block" &&
-                !popoverConfig.contains(e.target) &&
-                e.target !== btnConfig &&
-                !btnConfig.contains(e.target)
-              ) {
-                popoverConfig.style.display = "none";
-              }
-            });
-          }
-        });
-    </script>
+
     <div id="navbar-container"></div>
     <main class="perfil-main">
-      <section class="perfil-card">
-        <div class="perfil-avatar-area">
-          <div class="perfil-avatar">
-            <img src="logo.png" alt="Avatar" />
-          </div>
-          <div class="perfil-nome">Nome do Usuário</div>
-          <div class="perfil-objetivo">
-            <span>Objetivo:</span>
-            <span class="perfil-valor">R$ 10.000,00</span>
-          </div>
-        </div>
-        <div class="perfil-info-area">
-          <div class="perfil-info-card">
-            <h3>Valor guardado</h3>
-            <div class="perfil-valor">R$ 2.500,00</div>
-          </div>
-          <div class="perfil-info-card">
-            <h3>Lista de desejos</h3>
-            <ul class="perfil-lista-desejos">
-              <li>Viajar para o exterior</li>
-              <li>Comprar um notebook novo</li>
-              <li>Investir em cursos</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <footer class="perfil-footer">@todos os direitos reservados</footer>
+        <section class="perfil-card">
+            <div class="perfil-avatar-area">
+                <div class="perfil-avatar">
+                    <img alt="Avatar" src="./img/logo.png" />
+                </div>
+                <div class="perfil-nome">Nome do Usuário</div>
+                <div class="perfil-objetivo">
+                    <span>Objetivo:</span>
+                    <span class="perfil-valor">R$ 10.000,00</span>
+                </div>
+            </div>
+            <div class="perfil-info-area">
+                <div class="perfil-info-card">
+                    <h3>Valor guardado</h3>
+                    <div class="perfil-valor">R$ 2.500,00</div>
+                </div>
+                <div class="perfil-info-card">
+                    <h3>Lista de desejos</h3>
+                    <ul class="perfil-lista-desejos">
+                        <li>Viajar para o exterior</li>
+                        <li>Comprar um notebook novo</li>
+                        <li>Investir em cursos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <footer class="perfil-footer">@todos os direitos reservados</footer>
     </main>
-  </body>
+    <script src="js/main.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+
 </html>

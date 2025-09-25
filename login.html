@@ -1,166 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>login</title>
-   
-    <style>
-      body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
- 
-/* O contêiner principal para o formulário */
-.cadastro-container {
-    background-color: white;
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 480px;
-    width: 100%;
-}
- 
-.cadastro-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 24px;
-}
- 
-.logo-container {
-    background: #4CAF50; /* A cor do ícone do porquinho, você pode ajustar */
-    border-radius: 50%; /* Borda redonda para a imagem do porquinho */
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 8px;
-}
- 
-.logo-container img {
-    height: 100%;
-    width: auto;
-    display: block;
-}
- 
-h1 {
-    margin: 0;
-    font-size: 2em;
-    font-weight: 500;
-    color: #333;
-}
- 
-p {
-    text-align: center;
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 24px;
-}
- 
-label {
-    font-weight: bold;
-    color: #444;
-}
- 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 14px 1px;
-    margin: 8px 0 16px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #aaf8ba; /* Fundo verde claro da imagem */
-    font-size: 1em;
-}
- 
-input[type=text]:focus, input[type=password]:focus {
-    outline: none;
-    border-color: #4CAF50;
-    background-color: #aaf8ba;;
-}
- 
-.termos {
-    display: flex;
-    align-items: center;
-    margin-top: -8px;
-    margin-bottom: 16px;
-}
- 
-.termos input[type=checkbox] {
-    margin-right: 8px;
-}
- 
-.termos a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: normal;
-}
- 
-.termos a:hover {
-    text-decoration: underline;
-}
- 
-.buttons {
-    display: flex;
-    gap: 16px;
-    margin-top: 24px;
-}
- 
-.btn {
-    padding: 14px;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 1.1em;
-    font-weight: bold;
-    flex: 1;
-}
- 
-.btn.cancelar {
-    background-color: #4CAF50;
-    color: white;
-}
- 
-.btn.finalizar {
-    background-color: #007bff;
-    color: white;
-}
-    </style>
+
 <body>
     <div class="cadastro-container">
         <div class="cadastro-header">
             <div class="logo-container">
-                <img src="logo.png" alt="logo" >
+                <img alt="logo" src="./img/logo.png" />
             </div>
             <h1>Login</h1>
         </div>
-       
         <label for="email">Email</label>
-        <input type="text" placeholder="  Digite o Email" name="email">
-       
+        <input name="email" placeholder="  Digite o Email" type="text" />
         <label for="senha">Senha</label>
-        <input type="password" placeholder=" Digite a Senha" name="senha">
- 
+        <input name="senha" placeholder=" Digite a Senha" type="password" />
         <div class="termos">
             <label>
-                <input type="checkbox" checked="checked" name="lembrar"> Lembre-se de mim
+                <input checked="checked" name="lembrar" type="checkbox" /> Lembre-se de mim
             </label>
-        
         </div>
-       
         <div class="buttons">
-            <button type="button" class="btn cancelar"><a href="pagina-inicial.html"style="color:white; text-decoration:none;">Cancelar</a></button>
-            <button type="submit" class="btn finalizar"><a href="Home.html"style="color:white; text-decoration:none;">Entrar</a></button>
+            <button class="btn cancelar" type="button"><a href="pagina-inicial.html"
+                    style="color:white; text-decoration:none;">Cancelar</a></button>
+            <button class="btn finalizar" type="submit"><a href="Home.html"
+                    style="color:white; text-decoration:none;">Entrar</a></button>
         </div>
     </div>
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
 </body>
-</html>
-</body>
+<link href="css/main.css" rel="stylesheet" />
+<link href="css/login.css" rel="stylesheet" />
+</head>
+
 </html>
