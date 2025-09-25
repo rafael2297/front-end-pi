@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual do Usuário</title>
+    <script src="javaScript.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="navbar.js" defer></script>
+    <style>
+      :root {
+        --primary-color: #2c3e50;
+        /* Azul escuro */
+        --secondary-color: #3498db;
+        /* Azul claro */
+        --background-color: #f4f7f6;
+        /* Cinza claro */
+        --card-bg-color: #ffffff;
+        /* Branco */
+        --text-color: #333;
+        /* Cinza escuro */
+        --border-color: #e0e0e0;
+        /* Borda cinza */
+        --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        /* Sombra suave */
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      .manual-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: var(--card-bg-color);
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+
+      .manual-header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--border-color);
+        margin-bottom: 30px;
+      }
+
+      .manual-header h1 {
+        font-size: 2.5em;
+        color: var(--primary-color);
+        margin: 0;
+      }
+
+      .manual-header p {
+        font-size: 1.1em;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 2em;
+        color: var(--primary-color);
+        border-left: 5px solid var(--secondary-color);
+        padding-left: 15px;
+        margin-bottom: 25px;
+      }
+
+      .card-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .card {
+        background-color: var(--card-bg-color);
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+        padding: 25px;
+        flex: 1 1 calc(50% - 20px);
+        display: flex;
+        align-items: flex-start;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-icon {
+        font-size: 2.5em;
+        color: var(--secondary-color);
+        margin-right: 20px;
+      }
+
+      .card-content h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.5em;
+        color: var(--primary-color);
+      }
+
+      .card-content p {
+        margin: 0;
+        font-size: 1em;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .manual-container {
+          margin: 20px auto;
+          padding: 15px;
+        }
+
+        .card {
+          flex: 1 1 100%;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .card-icon {
+          margin: 0 0 15px 0;
+        }
+
+        .manual-header h1 {
+          font-size: 2em;
+        }
+
+        .manual-header p {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="navbar-container"></div>
+
+    <main class="manual-container">
+      <header class="manual-header">
+        <h1>Manual do Usuário</h1>
+        <p>
+          Seja bem-vindo(a) ao seu guia completo! Aqui você encontrará todas as
+          informações necessárias para aproveitar ao máximo a ferramenta.
+        </p>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Planejamento Mensal</h2>
+        <div class="card-list">
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="card-content">
+              <h3>Calendário</h3>
+              <p>
+                Essa é uma prática importante para controlar a receita de
+                entrada e saída e visualizar de forma objetiva. Aqui você pode
+                adicionar, editar e excluir eventos financeiros, como pagamentos
+                de contas, recebimentos de salários e outras transações
+                importantes.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-arrow-down"></i>
+            </div>
+            <div class="card-content">
+              <h3>Receitas</h3>
+              <p>
+                Representam os saldos positivos da conta, ou seja, toda a
+                entrada de dinheiro, como salário, bônus, renda extra e vendas.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+            <div class="card-content">
+              <h3>Despesas</h3>
+              <p>
+                Correspondem a todo o saldo negativo da conta, como compras,
+                contas pagas, e outras saídas.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-tags"></i>
+            </div>
+            <div class="card-content">
+              <h3>Categorias</h3>
+              <p>
+                Organize suas finanças agrupando receitas e despesas.
+                Categorizar te ajuda a ter uma visão clara de onde seu dinheiro
+                está indo.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <div class="card-content">
+              <h3>Lista de Desejos</h3>
+              <p>
+                A Lista de Desejos é uma função criada para ajudar você a
+                organizar e conquistar suas metas. Nela, é possível registrar
+                cada item ou objetivo que deseja alcançar, junto com o valor
+                necessário para realizá-lo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          const btnConfig = document.getElementById("configuracao-btn");
+          const popoverConfig = document.getElementById("popover-configuracao");
+          const fecharPopover = document.getElementById(
+            "fechar-popover-config"
+          );
+
+          if (btnConfig && popoverConfig && fecharPopover) {
+            btnConfig.addEventListener("click", function (e) {
+              e.preventDefault();
+              const rect = btnConfig.getBoundingClientRect();
+              popoverConfig.style.display = "block";
+              let top = rect.bottom + window.scrollY + 8;
+              let left = rect.left + window.scrollX;
+              const popoverWidth = popoverConfig.offsetWidth || 240;
+              const popoverHeight = popoverConfig.offsetHeight || 120;
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+
+              if (left + popoverWidth > viewportWidth) {
+                left = viewportWidth - popoverWidth - 16;
+              }
+
+              if (top + popoverHeight > viewportHeight) {
+                top = rect.top + window.scrollY - popoverHeight - 8;
+              }
+
+              popoverConfig.style.top = top + "px";
+              popoverConfig.style.left = left + "px";
+            });
+
+            fecharPopover.addEventListener("click", function () {
+              popoverConfig.style.display = "none";
+            });
+
+            document.addEventListener("mousedown", function (e) {
+              if (
+                popoverConfig.style.display === "block" &&
+                !popoverConfig.contains(e.target) &&
+                e.target !== btnConfig &&
+                !btnConfig.contains(e.target)
+              ) {
+                popoverConfig.style.display = "none";
+              }
+            });
+          }
+        });
+    </script>
+  </body>
+</html>

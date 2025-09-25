@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inicio</title>
+    <script src="javaScript.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="navbar.js" defer></script>
+    <script src="javaScript.js" defer></script>
+  </head>
+
+  <body>
+    <div id="navbar-container"></div>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          // Inicializar popover de configuração
+          const btnConfig = document.getElementById("configuracao-btn");
+          const popoverConfig = document.getElementById("popover-configuracao");
+          const fecharPopover = document.getElementById(
+            "fechar-popover-config"
+          );
+          if (btnConfig && popoverConfig && fecharPopover) {
+            btnConfig.addEventListener("click", function (e) {
+              e.preventDefault();
+              const rect = btnConfig.getBoundingClientRect();
+              popoverConfig.style.display = "block";
+              let top = rect.bottom + window.scrollY + 8;
+              let left = rect.left + window.scrollX;
+              const popoverWidth = popoverConfig.offsetWidth || 240;
+              const popoverHeight = popoverConfig.offsetHeight || 120;
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+              if (left + popoverWidth > viewportWidth) {
+                left = viewportWidth - popoverWidth - 16;
+              }
+              if (top + popoverHeight > viewportHeight) {
+                top = rect.top + window.scrollY - popoverHeight - 8;
+              }
+              popoverConfig.style.top = top + "px";
+              popoverConfig.style.left = left + "px";
+            });
+            fecharPopover.addEventListener("click", function () {
+              popoverConfig.style.display = "none";
+            });
+            document.addEventListener("mousedown", function (e) {
+              if (
+                popoverConfig.style.display === "block" &&
+                !popoverConfig.contains(e.target) &&
+                e.target !== btnConfig &&
+                !btnConfig.contains(e.target)
+              ) {
+                popoverConfig.style.display = "none";
+              }
+            });
+          }
+        });
+    </script>
+
+    <div class="conteudo">
+      <h1>Bem-vindo ao SeuBolso!</h1>
+      <p>Gerencie suas finanças de forma simples.</p>
+    </div>
+
+    <div class="carrosel">
+      <div class="carrosel-slide">
+        <div class="carrosel-item">
+          <img src="painel.png" alt="painel" />
+        </div>
+        <div class="carrosel-item">
+          <img src="PROCESSO-DE-PLANEJAMENTO-FINANCEIRO.png" alt="painel2" />
+        </div>
+      </div>
+      <!-- Setas removidas -->
+      <div class="carrosel-indicadores"></div>
+    </div>
+
+    <footer class="rodape">© 2025 SeuBolso - Controle Financeiro</footer>
+  </body>
+</html>

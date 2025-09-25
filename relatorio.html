@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>relatorio</title>
+    <script src="javaScript.js" defer></script>
+    <script src="navbar.js" defer></script>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f2e1;
+      }
+
+      /* Barra superior */
+      .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #009c3b;
+        color: white;
+        padding: 15px 30px;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: 500;
+      }
+      .barra-esquerda {
+        display: flex;
+        align-items: center;
+      }
+      .barra-esquerda .marca {
+        max-width: 150px;
+        height: auto;
+        margin-right: 10px;
+      }
+      .barra-esquerda .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      /* Conteúdo */
+      .conteudo {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #009c3b;
+      }
+
+      /* Caixa de filtros */
+      .filter-box {
+        background-color: #d0efd6;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .filter-field {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 200px;
+      }
+      .filter-field label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .filter-field input,
+      .filter-field select {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .filter-actions {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .filter-actions button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        color: white;
+        background-color: #009c3b;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .filter-actions button:hover {
+        background-color: #007a2c;
+        transform: translateY(-2px);
+      }
+      #export-excel {
+        background-color: #ffc107;
+        color: #000;
+      }
+      #export-excel:hover {
+        background-color: #e0a800;
+      }
+
+      /* Histórico */
+      .history-container {
+        margin-top: 20px;
+      }
+      .history-list {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .history-columns {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        background: #009c3b;
+        color: white;
+        padding: 15px;
+        font-weight: bold;
+      }
+      .history-item {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+      }
+      .history-item:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .history-item:last-child {
+        border-bottom: none;
+      }
+
+      @media (max-width: 700px) {
+        .history-columns,
+        .history-item {
+          grid-template-columns: 1fr;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          // Inicializar popover de configuração
+          const btnConfig = document.getElementById("configuracao-btn");
+          const popoverConfig = document.getElementById("popover-configuracao");
+          const fecharPopover = document.getElementById(
+            "fechar-popover-config"
+          );
+          if (btnConfig && popoverConfig && fecharPopover) {
+            btnConfig.addEventListener("click", function (e) {
+              e.preventDefault();
+              const rect = btnConfig.getBoundingClientRect();
+              popoverConfig.style.display = "block";
+              let top = rect.bottom + window.scrollY + 8;
+              let left = rect.left + window.scrollX;
+              const popoverWidth = popoverConfig.offsetWidth || 240;
+              const popoverHeight = popoverConfig.offsetHeight || 120;
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+              if (left + popoverWidth > viewportWidth) {
+                left = viewportWidth - popoverWidth - 16;
+              }
+              if (top + popoverHeight > viewportHeight) {
+                top = rect.top + window.scrollY - popoverHeight - 8;
+              }
+              popoverConfig.style.top = top + "px";
+              popoverConfig.style.left = left + "px";
+            });
+            fecharPopover.addEventListener("click", function () {
+              popoverConfig.style.display = "none";
+            });
+            document.addEventListener("mousedown", function (e) {
+              if (
+                popoverConfig.style.display === "block" &&
+                !popoverConfig.contains(e.target) &&
+                e.target !== btnConfig &&
+                !btnConfig.contains(e.target)
+              ) {
+                popoverConfig.style.display = "none";
+              }
+            });
+          }
+        });
+    </script>
+    <div class="conteudo">
+      <h2>📊 Relatórios Financeiros</h2>
+
+      <!-- Filtros -->
+      <div class="filter-box">
+        <div class="filter-field">
+          <label for="start-date">Data Inicial:</label>
+          <input type="date" id="start-date" />
+        </div>
+        <div class="filter-field">
+          <label for="end-date">Data Final:</label>
+          <input type="date" id="end-date" />
+        </div>
+        <div class="filter-field">
+          <label for="filter-category">Categoria:</label>
+          <select id="filter-category">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-type">Tipo:</label>
+          <select id="filter-type">
+            <option value="">Todos</option>
+            <option value="receita">Receitas</option>
+            <option value="despesa">Despesas</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button id="filter-report">Filtrar</button>
+          <button id="clear-filter">Limpar</button>
+          <button id="export-excel">Exportar Excel</button>
+        </div>
+      </div>
+
+      <!-- Histórico -->
+      <div class="history-container">
+        <div class="history-list">
+          <div class="history-columns">
+            <div>Descrição</div>
+            <div>Valor</div>
+            <div>Data</div>
+            <div>Tipo</div>
+          </div>
+          <div id="report-history">
+            <!-- Exemplo de item -->
+            <div class="history-item">
+              <div>Compra supermercado</div>
+              <div>R$ 250,00</div>
+              <div>12/09/2025</div>
+              <div>Despesa</div>
+            </div>
+            <div class="history-item">
+              <div>Salário</div>
+              <div>R$ 3.500,00</div>
+              <div>10/09/2025</div>
+              <div>Receita</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

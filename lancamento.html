@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lançamentos - SeuBolso</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="navbar.js" defer></script>
+    <style>
+      :root {
+        --green-primary: #1e8449;
+        --green-light: #2ecc71;
+        --green-button-success: #27ae60;
+        --red-button-danger: #e74c3c;
+        --background-body: #f4f7f6;
+        --card-background: #ecf0f1;
+        --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --text-color: #34495e;
+        --input-bg-color: #fff;
+        --border-color: #bdc3c7;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-body);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        background-color: var(--green-light);
+        color: white;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      .header .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        font-weight: bold;
+      }
+
+      .header .nav-links a:hover {
+        text-decoration: underline;
+      }
+
+      .header .user-icons i {
+        font-size: 1.2em;
+        margin-left: 20px;
+      }
+
+      .main-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      .section-form {
+        background-color: var(--card-background);
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 30px;
+      }
+
+      /* Flexbox para alinhamento do título e do seletor */
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .section-form h2 {
+        margin: 0;
+        font-size: 1.8em;
+        color: var(--text-color);
+      }
+
+      .section-form p {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #7f8c8d;
+      }
+
+      .launch-type-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+
+      /* Estilo para o seletor de tipo */
+      .type-selector {
+        display: flex;
+        border-radius: 25px;
+        overflow: hidden;
+      }
+
+      .type-selector input {
+        display: none;
+      }
+
+      .type-selector label {
+        padding: 8px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+      }
+
+      .type-selector #receita:checked ~ label[for="receita"] {
+        background-color: var(--green-button-success);
+      }
+
+      .type-selector #despesa:checked ~ label[for="despesa"] {
+        background-color: var(--red-button-danger);
+      }
+
+      .type-selector #receita:not(:checked) ~ label[for="receita"] {
+        background-color: #d1d1d1;
+      }
+
+      .type-selector #despesa:not(:checked) ~ label[for="despesa"] {
+        background-color: #d1d1d1;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-field label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .form-grid input[type="text"],
+      .form-grid textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: var(--input-bg-color);
+      }
+      .form-grid input[type="text"]:focus,
+      .form-grid textarea:focus {
+        background-color: #fff;
+        border: 1px solid orange;
+        outline: none;
+        box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+      }
+
+      .form-grid .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .form-actions .btn {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .form-actions .btn-add {
+        background-color: var(--green-button-success);
+        color: white;
+      }
+
+      .form-actions .btn-clear {
+        background-color: transparent;
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+      }
+
+      .section-latest {
+        background-color: var(--card-background);
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: var(--box-shadow);
+      }
+
+      .section-latest h2 {
+        margin-top: 0;
+        font-size: 1.8em;
+        color: var(--text-color);
+      }
+
+      .latest-launch {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--input-bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 10px;
+      }
+
+      .launch-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .launch-date {
+        font-weight: bold;
+        min-width: 90px;
+      }
+
+      .launch-details span {
+        display: block;
+      }
+
+      .launch-category-icon {
+        font-size: 1.2em;
+      }
+
+      .launch-value.positive {
+        color: var(--green-button-success);
+        font-weight: bold;
+      }
+
+      .launch-value.negative {
+        color: var(--red-button-danger);
+        font-weight: bold;
+      }
+
+      .launch-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .launch-actions .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .launch-actions .btn-edit {
+        background-color: var(--secondary-color);
+        color: white;
+      }
+
+      .launch-actions .btn-delete {
+        background-color: var(--red-button-danger);
+        color: white;
+      }
+
+      .floating-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--green-button-success);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .header .nav-links {
+          margin-top: 10px;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .latest-launch {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="navbar-container"></div>
+
+    <main class="main-container">
+      <div class="section-form">
+        <div class="section-header">
+          <h2>Novo lançamento</h2>
+          <div class="type-selector">
+            <input
+              type="radio"
+              id="receita"
+              name="launch-type"
+              value="receita"
+              checked
+            />
+            <label for="receita">Receita</label>
+            <input
+              type="radio"
+              id="despesa"
+              name="launch-type"
+              value="despesa"
+            />
+            <label for="despesa">Despesa</label>
+          </div>
+        </div>
+        <p>Adicione receitas e despesas de forma rápida.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="titulo">Nome</label>
+            <input type="text" id="titulo" placeholder="Ex: Salário" />
+          </div>
+          <div class="form-field">
+            <label for="valor">Valor</label>
+            <input type="text" id="valor" placeholder="Ex: R$ 100,00" />
+          </div>
+          <div class="form-field">
+            <label for="categoria">Categoria</label>
+            <input type="text" id="categoria" placeholder="Ex: Alimentação" />
+          </div>
+          <div class="form-field">
+            <label for="data">Data</label>
+            <input type="text" id="data" placeholder="Ex: 25/08/2025" />
+          </div>
+          <div class="form-field full-width">
+            <label for="pagamento">Forma de Pagamento</label>
+            <input
+              type="text"
+              id="pagamento"
+              placeholder="Ex: Cartão de Crédito"
+            />
+          </div>
+          <div class="form-field full-width">
+            <label for="descricao">Descrição (Opcional)</label>
+            <textarea
+              id="descricao"
+              rows="4"
+              placeholder="Adicione mais detalhes..."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-add">Adicionar Receita</button>
+          <button class="btn btn-clear">Limpar</button>
+        </div>
+      </div>
+
+      <div class="section-latest">
+        <h2>Últimos lançamentos</h2>
+
+        <div class="latest-launch">
+          <div class="launch-info">
+            <span class="launch-date">25/08/2025</span>
+            <i
+              class="fas fa-wallet launch-category-icon"
+              style="color: #6495ed"
+            ></i>
+            <div class="launch-details">
+              <span>Salário</span>
+            </div>
+          </div>
+          <div class="launch-info">
+            <span class="launch-value positive">+ R$ 2.500,00</span>
+            <span class="launch-card">Crédito - Nubank</span>
+          </div>
+          <div class="launch-actions">
+            <button class="btn btn-edit">Editar</button>
+            <button class="btn btn-delete">Excluir</button>
+          </div>
+        </div>
+
+        <div class="latest-launch">
+          <div class="launch-info">
+            <span class="launch-date">24/08/2025</span>
+            <i
+              class="fas fa-utensils launch-category-icon"
+              style="color: #ff7f50"
+            ></i>
+            <div class="launch-details">
+              <span>Alimentação</span>
+            </div>
+          </div>
+          <div class="launch-info">
+            <span class="launch-value negative">- R$ 120,00</span>
+            <span class="launch-card">Débito</span>
+          </div>
+          <div class="launch-actions">
+            <button class="btn btn-edit">Editar</button>
+            <button class="btn btn-delete">Excluir</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="floating-button">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          // Inicializar popover de configuração
+          const btnConfig = document.getElementById("configuracao-btn");
+          const popoverConfig = document.getElementById("popover-configuracao");
+          const fecharPopover = document.getElementById(
+            "fechar-popover-config"
+          );
+          if (btnConfig && popoverConfig && fecharPopover) {
+            btnConfig.addEventListener("click", function (e) {
+              e.preventDefault();
+              const rect = btnConfig.getBoundingClientRect();
+              popoverConfig.style.display = "block";
+              let top = rect.bottom + window.scrollY + 8;
+              let left = rect.left + window.scrollX;
+              const popoverWidth = popoverConfig.offsetWidth || 240;
+              const popoverHeight = popoverConfig.offsetHeight || 120;
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+              if (left + popoverWidth > viewportWidth) {
+                left = viewportWidth - popoverWidth - 16;
+              }
+              if (top + popoverHeight > viewportHeight) {
+                top = rect.top + window.scrollY - popoverHeight - 8;
+              }
+              popoverConfig.style.top = top + "px";
+              popoverConfig.style.left = left + "px";
+            });
+            fecharPopover.addEventListener("click", function () {
+              popoverConfig.style.display = "none";
+            });
+            document.addEventListener("mousedown", function (e) {
+              if (
+                popoverConfig.style.display === "block" &&
+                !popoverConfig.contains(e.target) &&
+                e.target !== btnConfig &&
+                !btnConfig.contains(e.target)
+              ) {
+                popoverConfig.style.display = "none";
+              }
+            });
+          }
+        });
+    </script>
+  </body>
+</html>

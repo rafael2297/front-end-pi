@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Desejos</title>
+    <script src="javaScript.js" defer></script>
+    <script src="navbar.js" defer></script>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f2e1;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: 500;
+      }
+
+      .conteudo {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #009c3b;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+        background-color: #d0efd6;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      form input {
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      form input:focus {
+        border-color: #009c3b;
+        box-shadow: 0 0 6px rgba(0, 156, 59, 0.3);
+        outline: none;
+      }
+      form button {
+        padding: 14px 20px;
+        background-color: #009c3b;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        width: 100%;
+        transition: background 0.2s, transform 0.2s;
+      }
+      form button:hover {
+        background-color: #007a2c;
+        transform: translateY(-2px);
+      }
+
+      .wishlist-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .wishlist-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+      }
+      .wishlist-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .item-info {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 10px;
+      }
+      .item-info img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+      .item-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .item-name {
+        font-weight: bold;
+        word-break: break-word;
+        color: #000;
+      }
+      .item-value {
+        color: #555;
+      }
+
+      .card-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .wishlist-card button {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 0.85em;
+        width: 80px;
+        transition: background 0.2s;
+      }
+      .edit-btn {
+        background-color: #ffc107;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+      }
+      .edit-btn:hover {
+        background-color: #e0a800;
+      }
+      .delete-btn:hover {
+        background-color: #c82333;
+      }
+
+      @media (max-width: 500px) {
+        .wishlist-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .card-buttons {
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 10px;
+        }
+        .item-info {
+          flex-direction: row;
+          gap: 10px;
+          width: 100%;
+        }
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background-color: #f7f2e1;
+        padding: 20px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .modal form {
+        background-color: #d0efd6;
+      }
+      .wishlist-card .item-name a {
+        display: inline-block; /* ou block, dependendo do alinhamento */
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wishlist-card .item-name a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+     <div id="navbar-container"></div>
+
+    </div>
+    <script>
+       fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+             // Inicializar popover de configuração
+                const btnConfig = document.getElementById('configuracao-btn');
+                const popoverConfig = document.getElementById('popover-configuracao');
+                const fecharPopover = document.getElementById('fechar-popover-config');
+                if (btnConfig && popoverConfig && fecharPopover) {
+                    btnConfig.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const rect = btnConfig.getBoundingClientRect();
+                        popoverConfig.style.display = 'block';
+                        let top = rect.bottom + window.scrollY + 8;
+                        let left = rect.left + window.scrollX;
+                        const popoverWidth = popoverConfig.offsetWidth || 240;
+                        const popoverHeight = popoverConfig.offsetHeight || 120;
+                        const viewportWidth = window.innerWidth;
+                        const viewportHeight = window.innerHeight;
+                        if (left + popoverWidth > viewportWidth) {
+                            left = viewportWidth - popoverWidth - 16;
+                        }
+                        if (top + popoverHeight > viewportHeight) {
+                            top = rect.top + window.scrollY - popoverHeight - 8;
+                        }
+                        popoverConfig.style.top = top + 'px';
+                        popoverConfig.style.left = left + 'px';
+                    });
+                    fecharPopover.addEventListener('click', function () {
+                        popoverConfig.style.display = 'none';
+                    });
+                    document.addEventListener('mousedown', function (e) {
+                        if (popoverConfig.style.display === 'block' && !popoverConfig.contains(e.target) && e.target !== btnConfig && !btnConfig.contains(e.target)) {
+                            popoverConfig.style.display = 'none';
+                        }
+                    });
+                }
+            
+            });
+    </script>
+
+    <div class="conteudo">
+      <h2>Minha Lista de Desejos</h2>
+      <form id="wishlist-form">
+        <input type="text" id="item-name" placeholder="Nome do item" required />
+        <input
+          type="number"
+          id="item-value"
+          placeholder="Valor (R$)"
+          required
+        />
+        <input type="file" id="item-image" accept="image/*" />
+        <input
+          type="text"
+          id="item-link"
+          placeholder="URL do link (opcional)"
+        />
+        <button type="submit">Adicionar Item</button>
+      </form>
+
+      <div id="wishlist" class="wishlist-container"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <form id="edit-form">
+          <input
+            type="text"
+            id="edit-name"
+            placeholder="Nome do item"
+            required
+          />
+          <input
+            type="number"
+            id="edit-value"
+            placeholder="Valor (R$)"
+            required
+          />
+          <input type="file" id="edit-image" accept="image/*" />
+          <input
+            type="text"
+            id="edit-link"
+            placeholder="URL do link (opcional)"
+          />
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("wishlist-form");
+      const wishlistEl = document.getElementById("wishlist");
+      const modal = document.getElementById("edit-modal");
+      const closeModalBtn = document.getElementById("close-modal");
+      const editForm = document.getElementById("edit-form");
+
+      let wishlist = [];
+      let editIndex = null;
+
+      function renderList() {
+        wishlistEl.innerHTML = "";
+        wishlist.forEach((item, index) => {
+          const card = document.createElement("div");
+          card.classList.add("wishlist-card");
+
+          let imgHtml = "";
+          if (item.imageData) {
+            imgHtml = item.link
+              ? `<a href="${item.link}" target="_blank"><img src="${item.imageData}" alt="${item.name}"></a>`
+              : `<img src="${item.imageData}" alt="${item.name}">`;
+          }
+
+          let nameHtml =
+            !item.imageData && item.link
+              ? `<a href="${item.link}" target="_blank">${item.name}</a>`
+              : item.name;
+
+          card.innerHTML = `
+      <div class="item-info">
+        ${imgHtml}
+        <div class="item-text">
+          <div class="item-name">${nameHtml}</div>
+          <div class="item-value">R$ ${item.value.toFixed(2)}</div>
+        </div>
+      </div>
+      <div class="card-buttons">
+        <button class="edit-btn" onclick="openEditModal(${index})">Editar</button>
+        <button class="delete-btn" onclick="deleteItem(${index})">Excluir</button>
+      </div>
+    `;
+          wishlistEl.appendChild(card);
+        });
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("item-name").value.trim();
+        const value = parseFloat(document.getElementById("item-value").value);
+        const link = document.getElementById("item-link").value.trim();
+        const imageFile = document.getElementById("item-image").files[0];
+
+        if (!name || isNaN(value)) return;
+
+        if (imageFile) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            wishlist.push({
+              name,
+              value,
+              link: link || "",
+              imageData: event.target.result,
+            });
+            form.reset();
+            renderList();
+          };
+          reader.readAsDataURL(imageFile);
+        } else {
+          wishlist.push({ name, value, link: link || "", imageData: "" });
+          form.reset();
+          renderList();
+        }
+      });
+
+      function deleteItem(index) {
+        if (confirm("Deseja realmente excluir este item?")) {
+          wishlist.splice(index, 1);
+          renderList();
+        }
+      }
+
+      /* Modal de edição */
+      function openEditModal(index) {
+        editIndex = index;
+        const item = wishlist[index];
+        document.getElementById("edit-name").value = item.name;
+        document.getElementById("edit-value").value = item.value;
+        document.getElementById("edit-link").value = item.link;
+        document.getElementById("edit-image").value = "";
+        modal.style.display = "flex";
+      }
+
+      closeModalBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      };
+
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const newName = document.getElementById("edit-name").value.trim();
+        const newValue = parseFloat(
+          document.getElementById("edit-value").value
+        );
+        const newLink = document.getElementById("edit-link").value.trim();
+        const newImageFile = document.getElementById("edit-image").files[0];
+
+        if (editIndex === null || !newName || isNaN(newValue)) return;
+
+        if (newImageFile) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            wishlist[editIndex] = {
+              name: newName,
+              value: newValue,
+              link: newLink || "",
+              imageData: event.target.result,
+            };
+            modal.style.display = "none";
+            renderList();
+          };
+          reader.readAsDataURL(newImageFile);
+        } else {
+          const oldImage = wishlist[editIndex].imageData || "";
+          wishlist[editIndex] = {
+            name: newName,
+            value: newValue,
+            link: newLink || "",
+            imageData: oldImage,
+          };
+          modal.style.display = "none";
+          renderList();
+        }
+      });
+    </script>
+  </body>
+</html>

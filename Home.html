@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="javaScript.js" defer></script>
+  </head>
+  <body style="background: #f7f2e1">
+    <div id="navbar-container"></div>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          // Inicializar popover de configuração
+          const btnConfig = document.getElementById("configuracao-btn");
+          const popoverConfig = document.getElementById("popover-configuracao");
+          const fecharPopover = document.getElementById(
+            "fechar-popover-config"
+          );
+          if (btnConfig && popoverConfig && fecharPopover) {
+            btnConfig.addEventListener("click", function (e) {
+              e.preventDefault();
+              const rect = btnConfig.getBoundingClientRect();
+              popoverConfig.style.display = "block";
+              let top = rect.bottom + window.scrollY + 8;
+              let left = rect.left + window.scrollX;
+              const popoverWidth = popoverConfig.offsetWidth || 240;
+              const popoverHeight = popoverConfig.offsetHeight || 120;
+              const viewportWidth = window.innerWidth;
+              const viewportHeight = window.innerHeight;
+              if (left + popoverWidth > viewportWidth) {
+                left = viewportWidth - popoverWidth - 16;
+              }
+              if (top + popoverHeight > viewportHeight) {
+                top = rect.top + window.scrollY - popoverHeight - 8;
+              }
+              popoverConfig.style.top = top + "px";
+              popoverConfig.style.left = left + "px";
+            });
+            fecharPopover.addEventListener("click", function () {
+              popoverConfig.style.display = "none";
+            });
+            document.addEventListener("mousedown", function (e) {
+              if (
+                popoverConfig.style.display === "block" &&
+                !popoverConfig.contains(e.target) &&
+                e.target !== btnConfig &&
+                !btnConfig.contains(e.target)
+              ) {
+                popoverConfig.style.display = "none";
+              }
+            });
+          }
+        });
+    </script>
+    <main style="max-width: 1200px; margin: 0 auto; padding: 32px 0">
+      <section style="display: flex; gap: 32px; margin-bottom: 32px">
+        <div
+          style="
+            flex: 1;
+            background: #fcf7e6;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            padding: 32px;
+            min-width: 320px;
+          "
+        >
+          <div style="font-size: 1.1em; color: #222; margin-bottom: 8px">
+            Bom Dia,<br /><span style="font-weight: bold"
+              >Nome do Usuário!</span
+            >
+            <span style="font-size: 1.5em">🪙</span>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              margin-top: 32px;
+            "
+          >
+            <div style="text-align: center; flex: 1">
+              <div style="color: #22a745; font-size: 1.1em">Receita Mensal</div>
+              <div style="color: #22a745; font-size: 2em; font-weight: bold">
+                R$ 2.000,00
+              </div>
+            </div>
+            <div
+              style="height: 48px; width: 2px; background: #ddd; margin: 0 32px"
+            ></div>
+            <div style="text-align: center; flex: 1">
+              <div style="color: #e53935; font-size: 1.1em">Despesa Mensal</div>
+              <div style="color: #e53935; font-size: 2em; font-weight: bold">
+                R$ 1.000,00
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style="display: flex; gap: 32px; flex-wrap: wrap">
+        <div
+          style="
+            flex: 1;
+            background: #fcf7e6;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            padding: 32px;
+            min-width: 320px;
+          "
+        >
+          <div style="color: #22a745; font-size: 1.1em; margin-bottom: 8px">
+            Saldo Geral
+          </div>
+          <div
+            style="
+              font-size: 2em;
+              font-weight: bold;
+              color: #222;
+              margin-bottom: 8px;
+            "
+          >
+            R$ 21.000,00
+            <span style="font-size: 1.1em; color: #222; vertical-align: middle"
+              >👀</span
+            >
+          </div>
+          <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 12px">
+            Histórico
+          </div>
+          <div
+            style="
+              background: #fff;
+              border-radius: 12px;
+              border: 1px solid #ccc;
+              padding: 16px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <span>compra mercado:</span>
+              <span style="color: #e53935; font-weight: bold">R$ 200,00</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <span>lanche:</span>
+              <span style="color: #e53935; font-weight: bold">R$ 30,00</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <span>Luz:</span>
+              <span style="color: #e53935; font-weight: bold">R$ 90,00</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <span>Entregas:</span>
+              <span style="color: #22a745; font-weight: bold">R$ 100,00</span>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            background: #fcf7e6;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            padding: 32px;
+            min-width: 320px;
+          "
+        >
+          <div style="color: #22a745; font-size: 1.1em; margin-bottom: 8px">
+            Faturas de Agosto
+          </div>
+          <div
+            style="
+              font-size: 2em;
+              font-weight: bold;
+              color: #222;
+              margin-bottom: 8px;
+            "
+          >
+            R$ -1.000,00
+            <span style="font-size: 1.1em; color: #222; vertical-align: middle"
+              >👀</span
+            >
+          </div>
+          <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 12px">
+            Cartão de Crédito
+          </div>
+          <div
+            style="
+              background: #fff;
+              border-radius: 12px;
+              border: 1px solid #ccc;
+              padding: 16px;
+            "
+          >
+            <div
+              style="
+                margin-bottom: 8px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                padding: 8px 12px;
+              "
+            >
+              <div>
+                24/08/2025 - Loja de Eletrônicos WorldTech
+                <span style="float: right; color: #e53935; font-weight: bold"
+                  >R$ 750,00</span
+                >
+              </div>
+              <div style="font-size: 0.95em; color: #888">Nota: Notebook</div>
+            </div>
+            <div
+              style="
+                margin-bottom: 8px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                padding: 8px 12px;
+              "
+            >
+              <div>
+                23/08/2025 - Loja de Eletrônicos WorldTech
+                <span style="float: right; color: #e53935; font-weight: bold"
+                  >R$ 200,00</span
+                >
+              </div>
+              <div style="font-size: 0.95em; color: #888">Nota: Notebook</div>
+            </div>
+            <div
+              style="
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                padding: 8px 12px;
+              "
+            >
+              <div>
+                22/08/2025 - Restaurante Sabor da Terra
+                <span style="float: right; color: #e53935; font-weight: bold"
+                  >R$ 50,00</span
+                >
+              </div>
+              <div style="font-size: 0.95em; color: #888">
+                Nota: Jantar com amigos
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <button
+        style="
+          position: fixed;
+          bottom: 32px;
+          right: 32px;
+          background: #22a745;
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 56px;
+          height: 56px;
+          font-size: 2em;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+          cursor: pointer;
+        "
+      >
+        ^
+      </button>
+    </main>
+  </body>
+</html>
