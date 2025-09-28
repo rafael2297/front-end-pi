@@ -1,0 +1,33 @@
+/* Botões de edição e salvar do perfil */
+.perfil-editar-btn, .perfil-salvar-btn {
+	background: #fff;
+	border: 1px solid #009C3B;
+	color: #009C3B;
+	border-radius: 6px;
+	padding: 4px 10px;
+	font-size: 1em;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+.perfil-editar-btn:hover, .perfil-salvar-btn:hover {
+	background: #e6f4ea;
+	color: #007a2f;
+	border-color: #007a2f;
+}
+.perfil-editar-btn img, .perfil-salvar-btn img {
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+}
+/* Input de edição */
+.perfil-editar-input {
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 4px 8px;
+	font-size: 1em;
+	margin-right: 4px;
+}

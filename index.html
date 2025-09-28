@@ -3,62 +3,38 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Dashboard</title>
-    <link href="style.css" rel="stylesheet" />
-    <link href="pagina-inicial.html" rel="pagina-inicial" />
-    <link href="css/main.css" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>inicio</title>
+  <script defer="" src="./js/main.js"></script>
+  <script defer="" src="./js/navbar.js"></script>
+  <script defer="" src="./js/main.js"></script>
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/pagina-inicial.css" rel="stylesheet" />
 </head>
 
 <body>
-    <header class="barra">
-        <div class="barra-esquerda">
-            <img alt="logo-marca" class="marca" src="logo.png" />
-            <span class="logo">SeuBolso</span>
-        </div>
-        <nav class="barra-meio">
-            <a href="calendario.html">Calendario</a>
-            <a href="lancamento.html">Lançamento</a>
-            <a href="lista-desejos.html">Lista de Desejos</a>
-            <a href="relatorio.html">Relatorio</a>
-        </nav>
-        <nav class="barra-direita">
-            <a href="login.html">Perfil</a>
-            <a href="#" id="configuracao-btn" style="display:inline-block; padding:0 8px;">
-                <img alt="Configurações" src="engrenagem.png"
-                    style="width:30px; height:30px; vertical-align:middle; cursor:pointer;">
-                </img></a>
-            <a href="#" id="notificacao-btn" style="display:inline-block; padding:0 8px;">
-                <img alt="Notificações" src="sino.png"
-                    style="width:30px; height:30px; vertical-align:middle; cursor:pointer;" />
-            </a>
-        </nav>
-    </header>
-    <div class="centro">
-        <iframe src="pagina-inicial.html"></iframe>
-    </div>
-    <div id="popover-configuracao"
-        style="display:none; position:absolute; z-index:1000; min-width:220px; background:rgba(255,255,255,0.97); border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:16px 14px; border:1px solid #eee;">
-        <h2 style="margin-top:0; font-size:1.1em; color:#333; font-weight:500;">Configurações</h2>
-        <ul style="list-style:none; padding:0; margin:0 0 12px 0;">
-            <li><button class="opcao-config"
-                    style="width:100%; padding:8px; margin-bottom:6px; border:none; background:#e6f4ea; color:#009C3B; border-radius:6px; cursor:pointer; font-size:1em;">Opção
-                    1</button></li>
-            <li><button class="opcao-config"
-                    style="width:100%; padding:8px; margin-bottom:6px; border:none; background:#e6f4ea; color:#009C3B; border-radius:6px; cursor:pointer; font-size:1em;">Opção
-                    2</button></li>
-            <li><button class="opcao-config"
-                    style="width:100%; padding:8px; margin-bottom:6px; border:none; background:#e6f4ea; color:#009C3B; border-radius:6px; cursor:pointer; font-size:1em;">Opção
-                    3</button></li>
-        </ul>
-        <button id="fechar-popover-config"
-            style="padding:6px 16px; background:#f2f2f2; border:none; border-radius:6px; cursor:pointer; color:#555; font-size:0.95em;">Fechar</button>
-    </div>
+  <div id="navbar-container"></div>
 
-    <script src="js/main.js"></script>
-    <script src="js/index.js"></script>
+  <div class="conteudo">
+    <h1>Bem-vindo ao SeuBolso!</h1>
+    <p>Gerencie suas finanças de forma simples.</p>
+  </div>
+  <div class="carrosel">
+    <div class="carrosel-slide">
+      <div class="carrosel-item">
+        <img alt="painel" src="./img/painel.png" />
+      </div>
+      <div class="carrosel-item">
+        <img alt="painel2" src="./img/PROCESSO-DE-PLANEJAMENTO-FINANCEIRO.png" />
+      </div>
+    </div>
+    <!-- Setas removidas -->
+    <div class="carrosel-indicadores"></div>
+  </div>
+  <footer class="rodape">© 2025 SeuBolso - Controle Financeiro</footer>
+  <script src="js/main.js"></script>
+  <script src="js/pagina-inicial.js"></script>
 </body>
 
 </html>

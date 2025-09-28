@@ -22,16 +22,36 @@
                 <div class="perfil-avatar">
                     <img alt="Avatar" src="./img/logo.png" />
                 </div>
-                <div class="perfil-nome">Nome do Usuário</div>
-                <div class="perfil-objetivo">
+                <div class="perfil-nome-area">
+                    <span id="perfil-nome" class="perfil-nome">Nome do Usuário</span>
+                    <button id="editar-nome-btn" class="perfil-editar-btn" title="Editar nome"
+                        style="margin-left:8px;">✏️</button>
+                    <input id="nome-input" class="perfil-editar-input" type="text"
+                        style="display:none; width:140px; margin-top:8px;" />
+                    <button id="salvar-nome-btn" class="perfil-salvar-btn" type="button"
+                        style="display:none; margin-left:4px;">Salvar</button>
+                </div>
+                <div class="perfil-objetivo-area">
                     <span>Objetivo:</span>
-                    <span class="perfil-valor">R$ 10.000,00</span>
+                    <span id="perfil-objetivo" class="perfil-valor">R$ 10.000,00</span>
+                    <button id="editar-objetivo-btn" class="perfil-editar-btn" title="Editar objetivo"
+                        style="margin-left:8px;">✏️</button>
+                    <input id="objetivo-input" class="perfil-editar-input" type="text"
+                        style="display:none; width:100px; margin-top:8px;" />
+                    <button id="salvar-objetivo-btn" class="perfil-salvar-btn" type="button"
+                        style="display:none; margin-left:4px;">Salvar</button>
                 </div>
             </div>
             <div class="perfil-info-area">
                 <div class="perfil-info-card">
                     <h3>Valor guardado</h3>
-                    <div class="perfil-valor">R$ 2.500,00</div>
+                    <span id="perfil-guardado" class="perfil-valor">R$ 2.500,00</span>
+                    <button id="editar-guardado-btn" class="perfil-editar-btn" title="Editar valor guardado"
+                        style="margin-left:8px;">✏️</button>
+                    <input id="guardado-input" class="perfil-editar-input" type="text"
+                        style="display:none; width:100px; margin-top:8px;" />
+                    <button id="salvar-guardado-btn" class="perfil-salvar-btn" type="button"
+                        style="display:none; margin-left:4px;">Salvar</button>
                 </div>
                 <div class="perfil-info-card">
                     <h3>Lista de desejos</h3>

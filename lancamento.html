@@ -3,105 +3,106 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Lançamentos - SeuBolso</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <script defer="" src="./js/navbar.js"></script>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Lançamentos - SeuBolso</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <script defer="" src="./js/navbar.js"></script>
 
-    <link href="css/main.css" rel="stylesheet" />
-    <link href="css/lancamento.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/lancamento.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="navbar-container"></div>
-    <main class="main-container">
-        <div class="section-form">
-            <div class="section-header">
-                <h2>Novo lançamento</h2>
-                <div class="type-selector">
-                    <input checked="" id="receita" name="launch-type" type="radio" value="receita" />
-                    <label for="receita">Receita</label>
-                    <input id="despesa" name="launch-type" type="radio" value="despesa" />
-                    <label for="despesa">Despesa</label>
-                </div>
-            </div>
-            <p>Adicione receitas e despesas de forma rápida.</p>
-            <div class="form-grid">
-                <div class="form-field">
-                    <label for="titulo">Nome</label>
-                    <input id="titulo" placeholder="Ex: Salário" type="text" />
-                </div>
-                <div class="form-field">
-                    <label for="valor">Valor</label>
-                    <input id="valor" placeholder="Ex: R$ 100,00" type="text" />
-                </div>
-                <div class="form-field">
-                    <label for="categoria">Categoria</label>
-                    <input id="categoria" placeholder="Ex: Alimentação" type="text" />
-                </div>
-                <div class="form-field">
-                    <label for="data">Data</label>
-                    <input id="data" placeholder="Ex: 25/08/2025" type="text" />
-                </div>
-                <div class="form-field full-width">
-                    <label for="pagamento">Forma de Pagamento</label>
-                    <input id="pagamento" placeholder="Ex: Cartão de Crédito" type="text" />
-                </div>
-                <div class="form-field full-width">
-                    <label for="descricao">Descrição (Opcional)</label>
-                    <textarea id="descricao" placeholder="Adicione mais detalhes..." rows="4"></textarea>
-                </div>
-            </div>
-            <div class="form-actions">
-                <button class="btn btn-add">Adicionar Receita</button>
-                <button class="btn btn-clear">Limpar</button>
-            </div>
+  <script src="js/auth.js"></script>
+  <div id="navbar-container"></div>
+  <main class="main-container">
+    <div class="section-form">
+      <div class="section-header">
+        <h2>Novo lançamento</h2>
+        <div class="type-selector">
+          <input checked="" id="receita" name="launch-type" type="radio" value="receita" />
+          <label for="receita">Receita</label>
+          <input id="despesa" name="launch-type" type="radio" value="despesa" />
+          <label for="despesa">Despesa</label>
         </div>
-        <div class="section-latest">
-            <h2>Últimos lançamentos</h2>
-            <div class="latest-launch">
-                <div class="launch-info">
-                    <span class="launch-date">25/08/2025</span>
-                    <i class="fas fa-wallet launch-category-icon" style="color: #6495ed"></i>
-                    <div class="launch-details">
-                        <span>Salário</span>
-                    </div>
-                </div>
-                <div class="launch-info">
-                    <span class="launch-value positive">+ R$ 2.500,00</span>
-                    <span class="launch-card">Crédito - Nubank</span>
-                </div>
-                <div class="launch-actions">
-                    <button class="btn btn-edit">Editar</button>
-                    <button class="btn btn-delete">Excluir</button>
-                </div>
-            </div>
-            <div class="latest-launch">
-                <div class="launch-info">
-                    <span class="launch-date">24/08/2025</span>
-                    <i class="fas fa-utensils launch-category-icon" style="color: #ff7f50"></i>
-                    <div class="launch-details">
-                        <span>Alimentação</span>
-                    </div>
-                </div>
-                <div class="launch-info">
-                    <span class="launch-value negative">- R$ 120,00</span>
-                    <span class="launch-card">Débito</span>
-                </div>
-                <div class="launch-actions">
-                    <button class="btn btn-edit">Editar</button>
-                    <button class="btn btn-delete">Excluir</button>
-                </div>
-            </div>
+      </div>
+      <p>Adicione receitas e despesas de forma rápida.</p>
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="titulo">Nome</label>
+          <input id="titulo" placeholder="Ex: Salário" type="text" />
         </div>
-    </main>
-    <div class="floating-button">
-        <i class="fas fa-chevron-up"></i>
+        <div class="form-field">
+          <label for="valor">Valor</label>
+          <input id="valor" placeholder="Ex: R$ 100,00" type="text" />
+        </div>
+        <div class="form-field">
+          <label for="categoria">Categoria</label>
+          <input id="categoria" placeholder="Ex: Alimentação" type="text" />
+        </div>
+        <div class="form-field">
+          <label for="data">Data</label>
+          <input id="data" placeholder="Ex: 25/08/2025" type="text" />
+        </div>
+        <div class="form-field full-width">
+          <label for="pagamento">Forma de Pagamento</label>
+          <input id="pagamento" placeholder="Ex: Cartão de Crédito" type="text" />
+        </div>
+        <div class="form-field full-width">
+          <label for="descricao">Descrição (Opcional)</label>
+          <textarea id="descricao" placeholder="Adicione mais detalhes..." rows="4"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-add">Adicionar Receita</button>
+        <button class="btn btn-clear">Limpar</button>
+      </div>
     </div>
+    <div class="section-latest">
+      <h2>Últimos lançamentos</h2>
+      <div class="latest-launch">
+        <div class="launch-info">
+          <span class="launch-date">25/08/2025</span>
+          <i class="fas fa-wallet launch-category-icon" style="color: #6495ed"></i>
+          <div class="launch-details">
+            <span>Salário</span>
+          </div>
+        </div>
+        <div class="launch-info">
+          <span class="launch-value positive">+ R$ 2.500,00</span>
+          <span class="launch-card">Crédito - Nubank</span>
+        </div>
+        <div class="launch-actions">
+          <button class="btn btn-edit">Editar</button>
+          <button class="btn btn-delete">Excluir</button>
+        </div>
+      </div>
+      <div class="latest-launch">
+        <div class="launch-info">
+          <span class="launch-date">24/08/2025</span>
+          <i class="fas fa-utensils launch-category-icon" style="color: #ff7f50"></i>
+          <div class="launch-details">
+            <span>Alimentação</span>
+          </div>
+        </div>
+        <div class="launch-info">
+          <span class="launch-value negative">- R$ 120,00</span>
+          <span class="launch-card">Débito</span>
+        </div>
+        <div class="launch-actions">
+          <button class="btn btn-edit">Editar</button>
+          <button class="btn btn-delete">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="floating-button">
+    <i class="fas fa-chevron-up"></i>
+  </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/lancamento.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/lancamento.js"></script>
 </body>
 
 </html>

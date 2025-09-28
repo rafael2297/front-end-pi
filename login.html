@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>login</title>
+    <title>Login</title>
+
+    <!-- Link para o Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
+</head>
 
 <body>
     <div class="cadastro-container">
+        <!-- Botão de Voltar dentro da mesma div com ícone do Bootstrap -->
+        <div class="back-btn">
+            <button class="btn voltar" type="button" onclick="window.location.href='pagina-inicial.html'">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+        </div>
+
         <div class="cadastro-header">
             <div class="logo-container">
                 <img alt="logo" src="./img/logo.png" />
@@ -17,25 +30,25 @@
         </div>
         <label for="email">Email</label>
         <input name="email" placeholder="  Digite o Email" type="text" />
+
         <label for="senha">Senha</label>
-        <input name="senha" placeholder=" Digite a Senha" type="password" />
+        <input name="senha" placeholder="  Digite a Senha" type="password" />
         <div class="termos">
             <label>
-                <input checked="checked" name="lembrar" type="checkbox" /> Lembre-se de mim
+                <input checked="checked" name="lembrar" type="checkbox" /> Lembre-se
+                de mim
             </label>
         </div>
         <div class="buttons">
-            <button class="btn cancelar" type="button"><a href="pagina-inicial.html"
-                    style="color:white; text-decoration:none;">Cancelar</a></button>
-            <button class="btn finalizar" type="submit"><a href="Home.html"
-                    style="color:white; text-decoration:none;">Entrar</a></button>
+            <button class="btn cancelar" type="button" onclick="window.location.href='cadastro.html'">
+                Cadastrar-se
+            </button>
+            <button class="btn finalizar" type="submit">Entrar</button>
         </div>
     </div>
+
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
 </body>
-<link href="css/main.css" rel="stylesheet" />
-<link href="css/login.css" rel="stylesheet" />
-</head>
 
 </html>

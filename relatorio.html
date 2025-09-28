@@ -3,80 +3,81 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>relatorio</title>
-    <script defer="" src="./js/main.js"></script>
-    <script defer="" src="./js/navbar.js"></script>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>relatorio</title>
+  <script defer="" src="./js/main.js"></script>
+  <script defer="" src="./js/navbar.js"></script>
 
-    <link href="css/main.css" rel="stylesheet" />
-    <link href="css/relatorio.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/relatorio.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="navbar-container"></div>
+  <script src="js/auth.js"></script>
+  <div id="navbar-container"></div>
 
-    <div class="conteudo">
-        <h2>📊 Relatórios Financeiros</h2>
-        <!-- Filtros -->
-        <div class="filter-box">
-            <div class="filter-field">
-                <label for="start-date">Data Inicial:</label>
-                <input id="start-date" type="date" />
-            </div>
-            <div class="filter-field">
-                <label for="end-date">Data Final:</label>
-                <input id="end-date" type="date" />
-            </div>
-            <div class="filter-field">
-                <label for="filter-category">Categoria:</label>
-                <select id="filter-category">
-                    <option value="">Todas</option>
-                </select>
-            </div>
-            <div class="filter-field">
-                <label for="filter-type">Tipo:</label>
-                <select id="filter-type">
-                    <option value="">Todos</option>
-                    <option value="receita">Receitas</option>
-                    <option value="despesa">Despesas</option>
-                </select>
-            </div>
-            <div class="filter-actions">
-                <button id="filter-report">Filtrar</button>
-                <button id="clear-filter">Limpar</button>
-                <button id="export-excel">Exportar Excel</button>
-            </div>
-        </div>
-        <!-- Histórico -->
-        <div class="history-container">
-            <div class="history-list">
-                <div class="history-columns">
-                    <div>Descrição</div>
-                    <div>Valor</div>
-                    <div>Data</div>
-                    <div>Tipo</div>
-                </div>
-                <div id="report-history">
-                    <!-- Exemplo de item -->
-                    <div class="history-item">
-                        <div>Compra supermercado</div>
-                        <div>R$ 250,00</div>
-                        <div>12/09/2025</div>
-                        <div>Despesa</div>
-                    </div>
-                    <div class="history-item">
-                        <div>Salário</div>
-                        <div>R$ 3.500,00</div>
-                        <div>10/09/2025</div>
-                        <div>Receita</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="conteudo">
+    <h2>📊 Relatórios Financeiros</h2>
+    <!-- Filtros -->
+    <div class="filter-box">
+      <div class="filter-field">
+        <label for="start-date">Data Inicial:</label>
+        <input id="start-date" type="date" />
+      </div>
+      <div class="filter-field">
+        <label for="end-date">Data Final:</label>
+        <input id="end-date" type="date" />
+      </div>
+      <div class="filter-field">
+        <label for="filter-category">Categoria:</label>
+        <select id="filter-category">
+          <option value="">Todas</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label for="filter-type">Tipo:</label>
+        <select id="filter-type">
+          <option value="">Todos</option>
+          <option value="receita">Receitas</option>
+          <option value="despesa">Despesas</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button id="filter-report">Filtrar</button>
+        <button id="clear-filter">Limpar</button>
+        <button id="export-excel">Exportar Excel</button>
+      </div>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/relatorio.js"></script>
+    <!-- Histórico -->
+    <div class="history-container">
+      <div class="history-list">
+        <div class="history-columns">
+          <div>Descrição</div>
+          <div>Valor</div>
+          <div>Data</div>
+          <div>Tipo</div>
+        </div>
+        <div id="report-history">
+          <!-- Exemplo de item -->
+          <div class="history-item">
+            <div>Compra supermercado</div>
+            <div>R$ 250,00</div>
+            <div>12/09/2025</div>
+            <div>Despesa</div>
+          </div>
+          <div class="history-item">
+            <div>Salário</div>
+            <div>R$ 3.500,00</div>
+            <div>10/09/2025</div>
+            <div>Receita</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+  <script src="js/relatorio.js"></script>
 </body>
 
 </html>

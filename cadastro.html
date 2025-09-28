@@ -1,49 +1,70 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Cadastro</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Cadastro</title>
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/cadastro.css" rel="stylesheet" />
+  <!-- Link para o Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
 
 <body>
-    <div class="cadastro-container">
-        <div class="cadastro-header">
-            <div class="logo-container">
-                <img alt="logo" src="./img/logo.png" />
-            </div>
-            <h1>Cadastro</h1>
-        </div>
-        <p>Por favor, preencha este login para criar uma conta.</p>
-        <label for="email">Email</label>
-        <input name="email" placeholder="  Digite o Email" type="text" />
-        <label for="senha">Senha</label>
-        <input name="senha" placeholder=" Digite a Senha" type="password" />
-        <label for="senha">Nome</label>
-        <input name="senha" placeholder=" Digite o nome de perfil" type="password" />
-        <div class="termos">
-            <label>
-                <input checked="checked" name="lembrar" type="checkbox" /> Lembre-se de mim
-            </label>
-        </div>
-        <div class="termos" style="align-items:flex-start; gap:8px; margin-bottom:16px;">
-            <input checked="checked" name="termos" style="margin-top:5px;" type="checkbox" />
-            <span style="font-size:0.98em; line-height:1.4;">Ao criar uma conta, você concorda com nossos <a
-                    href="#">Termos e Privacidade.</a></span>
-        </div>
-        <div class="buttons">
-            <button class="btn cancelar" type="button"><a href="pagina-inicial.html"
-                    style="color:white; text-decoration:none;">Cancelar</a></button>
-            <button class="btn finalizar" type="submit"><a href="login.html"
-                    style="color:white; text-decoration:none;">Finalizar Cadastro</a></button>
-        </div>
+  <div class="cadastro-container">
+    <!-- Botão de Voltar dentro da mesma div com ícone do Bootstrap -->
+    <div class="back-btn">
+      <button class="btn voltar" type="button" onclick="window.location.href='login.html'">
+        <i class="bi bi-arrow-left"></i> Voltar
+      </button>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/cadastro.js"></script>
+
+    <div class="cadastro-header">
+      <div class="logo-container">
+        <img alt="logo" src="./img/logo.png" />
+      </div>
+      <h1>Cadastro</h1>
+    </div>
+
+    <p>Por favor, preencha os dados abaixo para criar sua conta.</p>
+
+    <form action="login.html" method="POST">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" placeholder="Digite seu nome" type="text" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" placeholder="Digite seu email" type="email" required />
+
+      <label for="senha">Senha</label>
+      <input id="senha" name="senha" placeholder="Digite sua senha" type="password" required />
+
+      <div class="termos">
+        <label>
+          <input type="checkbox" name="lembrar" checked /> Lembre-se de mim
+        </label>
+      </div>
+
+      <div class="termos">
+        <input type="checkbox" name="termos" required />
+        <span>Ao criar uma conta, você concorda com nossos
+          <a href="#">Termos e Privacidade</a>.
+        </span>
+      </div>
+
+      <div class="buttons">
+        <button class="btn cancelar" type="button" onclick="window.location.href='login.html'">
+          Entrar
+        </button>
+        <button class="btn finalizar" type="submit">
+          Finalizar Cadastro
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cadastro.js"></script>
 </body>
-<link href="css/main.css" rel="stylesheet" />
-<link href="css/cadastro.css" rel="stylesheet" />
-</head>
 
 </html>
